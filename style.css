@@ -1,0 +1,253 @@
+/* ===== Root Theme Variables ===== */
+:root {
+  --clr-bg: #f8fafc;
+  --clr-text: #1e293b;
+  --clr-primary: #6366f1;
+  --clr-primary-dark: #4f46e5;
+  --clr-gradient-start: #4f46e5;
+  --clr-gradient-end: #0ea5e9;
+  --clr-card-bg: #ffffff;
+  --clr-glass-bg: rgba(255, 255, 255, 0.15);
+  --clr-glass-border: rgba(255, 255, 255, 0.2);
+}
+body.theme-dark {
+  --clr-bg: #0b1120;
+  --clr-text: #e5e7eb;
+  --clr-primary: #818cf8;
+  --clr-primary-dark: #6366f1;
+  --clr-gradient-start: #312e81;
+  --clr-gradient-end: #2563eb;
+  --clr-card-bg: #1e293b;
+  --clr-glass-bg: rgba(30, 41, 59, 0.5);
+  --clr-glass-border: rgba(255, 255, 255, 0.1);
+}
+
+/* ===== Base Styling ===== */
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--clr-bg);
+  color: var(--clr-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  line-height: 1.7;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+  backdrop-filter: blur(10px);
+  background-color: rgba(15, 23, 42, 0.8) !important;
+}
+.navbar-brand {
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+.navbar .nav-link {
+  font-weight: 600;
+  margin-right: 1rem;
+}
+.navbar .nav-link.active {
+  color: var(--clr-primary) !important;
+}
+
+/* ===== Hero Section ===== */
+#hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #fff;
+  background: linear-gradient(135deg, var(--clr-gradient-start) 0%, var(--clr-gradient-end) 100%);
+  overflow: hidden;
+}
+#hero h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+}
+#hero .wave {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  background: url('https://raw.githubusercontent.com/AnkitChaurasia1997/assets/main/wave.svg') repeat-x;
+  background-size: contain;
+  animation: wave 10s linear infinite;
+}
+@keyframes wave {
+  from { background-position-x: 0; }
+  to   { background-position-x: 1000px; }
+}
+
+/* ===== Section Generic ===== */
+section {
+  padding: 100px 0;
+}
+.section-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-align: center;
+  color: var(--clr-text) !important;
+}
+h2.section-title.dark-title {
+  color: #1e293b !important;
+}
+
+/* ===== Skills ===== */
+.skill-icon {
+  font-size: 2.5rem;
+  color: var(--clr-primary-dark);
+  margin: 0.5rem 1rem;
+  transition: transform 0.3s;
+}
+.skill-icon:hover {
+  transform: translateY(-5px) scale(1.1);
+}
+
+/* ===== Projects with Glass Effect ===== */
+.project-card {
+  background: var(--clr-glass-bg);
+  border: 1px solid var(--clr-glass-border);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  color: var(--clr-text);
+  border-radius: 1rem;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.1);
+}
+.project-card:hover {
+  transform: translateY(-8px) rotateX(4deg) rotateY(-4deg);
+  box-shadow: 0 1.25rem 2rem rgba(0,0,0,0.15);
+}
+.project-card img {
+  object-fit: cover;
+  height: 220px;
+  border-top-left-radius: 1rem;
+  border-top-right-radius: 1rem;
+}
+
+/* ===== Timeline ===== */
+.timeline {
+  border-left: 4px solid var(--clr-primary);
+  padding-left: 1.5rem;
+}
+.timeline li::before {
+  content: '';
+  position: absolute;
+  left: -11px;
+  top: 4px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--clr-primary);
+}
+
+/* ===== Flip Cards ===== */
+.flip-card {
+  background-color: transparent;
+  width: 100%;
+  perspective: 1000px;
+}
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 280px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+}
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background-color: var(--clr-card-bg);
+  color: var(--clr-text);
+}
+.flip-card-back {
+  transform: rotateY(180deg);
+  text-align: start;
+}
+
+/* ===== Awards Section ===== */
+.scrolling-shelf {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.award-glass-card {
+  flex: 0 0 280px;
+  scroll-snap-align: start;
+  background: var(--clr-glass-bg);
+  border: 1px solid var(--clr-glass-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 1rem;
+  padding: 1.25rem;
+  color: var(--clr-text);
+  box-shadow: 0 0.75rem 1.25rem rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.award-glass-card:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.1);
+}
+.award-glass-card img {
+  max-height: 140px;
+  object-fit: cover;
+  border-radius: 0.75rem;
+  cursor: pointer;
+}
+
+/* ===== Award Modal ===== */
+.award-modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  padding-top: 60px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+  transition: all 0.3s ease-in-out;
+  justify-content: center;
+  align-items: center;
+}
+.award-modal.show {
+  display: flex;
+}
+.award-modal img {
+  max-width: 90%;
+  max-height: 90%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 1rem;
+  box-shadow: 0 1rem 2rem rgba(0,0,0,0.5);
+  animation: zoomIn 0.3s ease;
+}
+@keyframes zoomIn {
+  from { transform: scale(0.85); opacity: 0; }
+  to   { transform: scale(1); opacity: 1; }
+}
+
+/* ===== Footer ===== */
+footer {
+  background-color: #020617;
+  color: #94a3b8;
+  padding: 2rem 0;
+}
